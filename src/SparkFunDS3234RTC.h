@@ -216,14 +216,23 @@ public:
 	void set12Hour(bool enable12 = true); // Enable/disable 12-hour mode
 	void set24Hour(bool enable24 = true); // Enable/disable 24-hour mode
 	
+
 	void writeToSRAM(uint8_t address, uint8_t data);
 	void writeToSRAM(uint8_t address, uint8_t * values, size_t len);
+
+	template <typename T>
+	void writeToSRAM(uint8_t address, T value);
+
 	uint8_t readFromSRAM(uint8_t address);
 	void readFromSRAM(uint8_t address, uint8_t * dest, size_t len);
+
+	template <typename T>
+	T readFromSRAM(uint8_t address);
 	
 	void writeToRegister(uint8_t address, uint8_t data);
 	uint8_t readFromRegister(uint8_t address);
 	
+
 private:
 	uint8_t _csPin;
 	uint8_t _time[TIME_ARRAY_LENGTH];
